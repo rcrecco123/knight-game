@@ -5,12 +5,11 @@ import tiles from "../assets/knight.png";
 import star from "../assets/star.png";
 import { accelerate, decelerate } from "../utils";
 import knight from "../assets/knight.png";
-import sword from "../assets/sword.png";
 
 let box;
 let cursors;
-var fireRate = 100;
-var nextFire = 0;
+let fireball;
+
 export default new Phaser.Class({
   Extends: Phaser.Scene,
   initialize: function () {
@@ -46,10 +45,6 @@ export default new Phaser.Class({
     this.load.image("background", background);
 
     this.load.spritesheet("tiles", tiles, {
-      frameWidth: 100,
-      frameHeight: 100,
-    });
-    this.load.image("sword", sword, {
       frameWidth: 100,
       frameHeight: 100,
     });
@@ -138,15 +133,7 @@ export default new Phaser.Class({
       this
     );
 
-    //sword
-
-    sword = this.add.group();
-    sword.enableBody = true;
-    sword.physicsBodyType = Phaser.Physics.ARDACE;
-
-    sword.createMultiple(20, "sword");
-    // sword.setAll("checkWorldBounds", true);
-    // sword.setAll("outOfBoundsKill", true);
+    //fireball
 
     ////
     box.setBounce(0, 0);
@@ -204,14 +191,5 @@ export default new Phaser.Class({
     if (cursors.right.isDown) box.setVelocityX(accelerate(velocity.x, 1));
     if (cursors.down.isDown) box.setVelocityY(accelerate(velocity.y, 1));
     if (cursors.left.isDown) box.setVelocityX(accelerate(velocity.x, -1));
-  },
-
-  fire: function fire() {
-    if (this.time.now > nextFire && sword.countDead() > 0) {
-      nextFire = game.time.now + fireRate;
-      var projectile = sword.getFirstDead();
-      projectile.reset(box.x - 8, box.y - 8);
-      this.physics.arcade.moveToPointer(sword, 300);
-    }
   },
 });
