@@ -2,7 +2,7 @@
   "name": "mintbean-phaserjs-template",
   "version": "1.0.0",
   "description": "Mintbean's template for PhaserJS games.",
-  "main": "index.html",
+  "main": "index.js",
   "author": "monarch@mintbean.io",
   "license": "MIT",
   "private": true,

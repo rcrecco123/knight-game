@@ -114,7 +114,7 @@ export default new Phaser.Class({
 
     cursors = this.input.keyboard.createCursorKeys();
 
-    box = this.physics.add.image(0, 0, "tiles", 0);
+    box = this.physics.add.image(100, 500, "tiles", 0);
 
     const processCollision = (box, star) => {
       star.destroy();
@@ -125,7 +125,6 @@ export default new Phaser.Class({
     };
 
     this.physics.add.collider(
-      stars,
       box,
 
       processCollision,
@@ -188,8 +187,8 @@ export default new Phaser.Class({
     if (cursors.up.isDown) {
       box.setVelocityY(accelerate(velocity.y, -1 * -0.5));
     }
-    if (cursors.right.isDown) box.setVelocityX(accelerate(velocity.x, 1));
+    if (cursors.right.isDown) box.setVelocityX(accelerate(velocity.x, 5));
     if (cursors.down.isDown) box.setVelocityY(accelerate(velocity.y, 1));
-    if (cursors.left.isDown) box.setVelocityX(accelerate(velocity.x, -1));
+    if (cursors.left.isDown) box.setVelocityX(accelerate(velocity.x, -5));
   },
 });
